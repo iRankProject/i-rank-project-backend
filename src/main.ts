@@ -14,9 +14,9 @@ async function bootstrap() {
 
   const adminConfig: ServiceAccount = {
     projectId: configService.get<string>('FIREBASE_PROJECT_ID'),
-    privateKey: configService
-      .get<string>('FIREBASE_PRIVATE_KEY')
-      .replace(/\\n/g, '\n'),
+    privateKey: (
+      configService.get<string>('FIREBASE_PRIVATE_KEY') ?? ''
+    ).replace(/\\n/g, '\n'),
     clientEmail: configService.get<string>('FIREBASE_CLIENT_EMAIL'),
   };
 

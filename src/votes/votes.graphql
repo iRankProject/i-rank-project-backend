@@ -1,0 +1,24 @@
+type Vote {
+  # Example field (placeholder)
+  exampleField: Int
+}
+
+input CreateVoteInput {
+  # Example field (placeholder)
+  exampleField: Int
+}
+
+input UpdateVoteInput {
+  id: Int!
+}
+
+type Query {
+  votes: [Vote]!
+  vote(id: Int!): Vote
+}
+
+type Mutation {
+  createVote(createVoteInput: CreateVoteInput!): Vote!
+  updateVote(updateVoteInput: UpdateVoteInput!): Vote!
+  removeVote(id: Int!): Vote
+}

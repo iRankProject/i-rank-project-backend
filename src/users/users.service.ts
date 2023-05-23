@@ -1,6 +1,7 @@
 import { ConflictException, Injectable } from '@nestjs/common';
 import { PrismaService } from '../../prisma/prisma.service';
 import { User } from '@prisma/client';
+import { encodePassword } from '../utils/bcrypt';
 
 @Injectable()
 export class UsersService {
@@ -13,24 +14,21 @@ export class UsersService {
     const existingUser = await this.prismaService.user.findUnique({
       where: { username },
     });
-
-    if (existingUser) {
-      throw new ConflictException('Username already exists');
-    }
-
     const existingEmail = await this.prismaService.user.findUnique({
       where: { email },
     });
 
-    if (existingEmail) {
-      throw new ConflictException('Email already exists');
+    if (existingUser || existingEmail) {
+      throw new ConflictException('User already exists');
     }
+
+    const hashedPassword = encodePassword(password);
 
     const newUser = await this.prismaService.user.create({
       data: {
         username,
         email,
-        password,
+        password: hashedPassword,
       },
     });
 

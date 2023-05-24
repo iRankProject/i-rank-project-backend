@@ -25,7 +25,7 @@ export class UpdatePostInput {
 }
 
 export class UpdateUserInput {
-    id: number;
+    id: string;
 }
 
 export class CreateVoteInput {
@@ -51,7 +51,7 @@ export abstract class IQuery {
 
     abstract users(): Nullable<User>[] | Promise<Nullable<User>[]>;
 
-    abstract user(id: number): Nullable<User> | Promise<Nullable<User>>;
+    abstract user(id: string): Nullable<User> | Promise<Nullable<User>>;
 
     abstract votes(): Nullable<Vote>[] | Promise<Nullable<Vote>[]>;
 
@@ -75,7 +75,7 @@ export abstract class IMutation {
 
     abstract updateUser(updateUserInput: UpdateUserInput): User | Promise<User>;
 
-    abstract removeUser(id: number): Nullable<User> | Promise<Nullable<User>>;
+    abstract removeUser(id: string): Nullable<User> | Promise<Nullable<User>>;
 
     abstract createVote(createVoteInput: CreateVoteInput): Vote | Promise<Vote>;
 

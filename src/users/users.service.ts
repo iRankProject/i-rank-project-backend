@@ -1,6 +1,10 @@
-import { ConflictException, Injectable } from '@nestjs/common';
+import {
+  ConflictException,
+  Injectable,
+  NotFoundException,
+} from '@nestjs/common';
 import { PrismaService } from '../../prisma/prisma.service';
-import { User } from '@prisma/client';
+import { Prisma, User } from '@prisma/client';
 import { encodePassword } from '../utils/bcrypt';
 
 @Injectable()
@@ -43,10 +47,36 @@ export class UsersService {
     return `This action returns a #${id} user`;
   }
 
-  update() {
-    return `This action updates a # user`;
-  }
+  async update(
+    id: string,
+    username?: string,
+    email?: string,
+  ): Promise<User | null> {
+    const existingUser = await this.prismaService.user.findUnique({
+      where: { id },
+    });
 
+    if (!existingUser) {
+      throw new NotFoundException('User not found');
+    }
+
+    const data: Prisma.UserUpdateInput = {};
+
+    if (username !== undefined) {
+      data.username = username;
+    }
+
+    if (email !== undefined) {
+      data.email = email;
+    }
+
+    const updatedUser = await this.prismaService.user.update({
+      where: { id },
+      data,
+    });
+
+    return updatedUser;
+  }
   async removeUser(id: string): Promise<User | null> {
     const removedUser = await this.prismaService.user.delete({
       where: { id },

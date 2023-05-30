@@ -24,10 +24,6 @@ export class UpdatePostInput {
     id: number;
 }
 
-export class UpdateUserInput {
-    id: string;
-}
-
 export class CreateVoteInput {
     exampleField?: Nullable<number>;
 }
@@ -73,7 +69,7 @@ export abstract class IMutation {
 
     abstract createUser(username: string, email: string, password: string): User | Promise<User>;
 
-    abstract updateUser(updateUserInput: UpdateUserInput): User | Promise<User>;
+    abstract updateUser(email?: Nullable<string>, username?: Nullable<string>, id?: Nullable<string>): User | Promise<User>;
 
     abstract removeUser(id: string): Nullable<User> | Promise<Nullable<User>>;
 

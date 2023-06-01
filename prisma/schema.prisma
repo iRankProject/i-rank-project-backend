@@ -19,8 +19,8 @@ model Category {
   id          String    @id @default(auto()) @map("_id") @db.ObjectId
   name        String    @unique
   description String
-  startDate   DateTime
-  endDate     DateTime
+  startDate   DateTime?
+  endDate     DateTime?
   posts       Post[]
 }
 

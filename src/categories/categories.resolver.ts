@@ -31,7 +31,7 @@ export class CategoriesResolver {
   }
 
   @Mutation('removeCategory')
-  remove(@Args('id') id: number) {
+  remove(@Args('id') id: string) {
     return this.categoriesService.remove(id);
   }
 }

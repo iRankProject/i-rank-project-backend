@@ -39,7 +39,7 @@ export class Category {
 export abstract class IQuery {
     abstract categories(): Nullable<Category>[] | Promise<Nullable<Category>[]>;
 
-    abstract category(id: number): Nullable<Category> | Promise<Nullable<Category>>;
+    abstract category(id: string): Nullable<Category> | Promise<Nullable<Category>>;
 
     abstract posts(): Nullable<Post>[] | Promise<Nullable<Post>[]>;
 
@@ -59,7 +59,7 @@ export abstract class IMutation {
 
     abstract updateCategory(updateCategoryInput: UpdateCategoryInput): Category | Promise<Category>;
 
-    abstract removeCategory(id: number): Nullable<Category> | Promise<Nullable<Category>>;
+    abstract removeCategory(id: string): Nullable<Category> | Promise<Nullable<Category>>;
 
     abstract createPost(createPostInput: CreatePostInput): Post | Promise<Post>;
 

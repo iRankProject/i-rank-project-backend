@@ -1,4 +1,8 @@
-import { ConflictException, Injectable } from '@nestjs/common';
+import {
+  ConflictException,
+  Injectable,
+  NotFoundException,
+} from '@nestjs/common';
 import { Category } from '@prisma/client';
 import { PrismaService } from 'prisma/prisma.service';
 
@@ -46,7 +50,15 @@ export class CategoriesService {
     return `This action updates a # category`;
   }
 
-  remove(id: number) {
-    return `This action removes a #${id} category`;
+  async remove(id: string): Promise<Category> {
+    const category = await this.prisma.category.findUnique({ where: { id } });
+
+    if (!category) {
+      throw new NotFoundException(`Category with id ${id} not found`);
+    }
+
+    await this.prisma.category.delete({ where: { id } });
+
+    return category;
   }
 }

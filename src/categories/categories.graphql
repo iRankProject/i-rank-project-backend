@@ -14,7 +14,7 @@ input UpdateCategoryInput {
 
 type Query {
   categories: [Category]!
-  category(id: Int!): Category
+  category(id: ID!): Category
 }
 
 type Mutation {
@@ -25,5 +25,5 @@ type Mutation {
     endDate: DateTime
   ): Category!
   updateCategory(updateCategoryInput: UpdateCategoryInput!): Category!
-  removeCategory(id: Int!): Category
+  removeCategory(id: ID!): Category
 }

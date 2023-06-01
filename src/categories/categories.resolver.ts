@@ -6,8 +6,13 @@ export class CategoriesResolver {
   constructor(private readonly categoriesService: CategoriesService) {}
 
   @Mutation('createCategory')
-  create() {
-    return this.categoriesService.create();
+  async createCategory(
+    @Args('name') name: string,
+    @Args('description') description: string,
+    @Args('startDate', { nullable: true }) startDate?: Date,
+    @Args('endDate', { nullable: true }) endDate?: Date,
+  ) {
+    return this.categoriesService.create(name, description, startDate, endDate);
   }
 
   @Query('categories')

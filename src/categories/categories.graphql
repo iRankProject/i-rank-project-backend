@@ -1,11 +1,11 @@
-type Category {
-  # Example field (placeholder)
-  exampleField: Int
-}
+scalar DateTime
 
-input CreateCategoryInput {
-  # Example field (placeholder)
-  exampleField: Int
+type Category {
+  id: ID
+  name: String!
+  description: String
+  startDate: DateTime
+  endDate: DateTime
 }
 
 input UpdateCategoryInput {
@@ -18,7 +18,12 @@ type Query {
 }
 
 type Mutation {
-  createCategory(createCategoryInput: CreateCategoryInput!): Category!
+  createCategory(
+    name: String!
+    description: String!
+    startDate: DateTime
+    endDate: DateTime
+  ): Category!
   updateCategory(updateCategoryInput: UpdateCategoryInput!): Category!
   removeCategory(id: Int!): Category
 }

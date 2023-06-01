@@ -8,10 +8,6 @@
 /* tslint:disable */
 /* eslint-disable */
 
-export class CreateCategoryInput {
-    exampleField?: Nullable<number>;
-}
-
 export class UpdateCategoryInput {
     id: number;
 }
@@ -33,7 +29,11 @@ export class UpdateVoteInput {
 }
 
 export class Category {
-    exampleField?: Nullable<number>;
+    id?: Nullable<string>;
+    name: string;
+    description?: Nullable<string>;
+    startDate?: Nullable<DateTime>;
+    endDate?: Nullable<DateTime>;
 }
 
 export abstract class IQuery {
@@ -55,7 +55,7 @@ export abstract class IQuery {
 }
 
 export abstract class IMutation {
-    abstract createCategory(createCategoryInput: CreateCategoryInput): Category | Promise<Category>;
+    abstract createCategory(name: string, description: string, startDate?: Nullable<DateTime>, endDate?: Nullable<DateTime>): Category | Promise<Category>;
 
     abstract updateCategory(updateCategoryInput: UpdateCategoryInput): Category | Promise<Category>;
 
@@ -94,4 +94,5 @@ export class Vote {
     exampleField?: Nullable<number>;
 }
 
+export type DateTime = any;
 type Nullable<T> = T | null;

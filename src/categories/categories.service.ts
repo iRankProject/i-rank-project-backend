@@ -28,7 +28,7 @@ export class CategoriesService {
       name,
       description,
       startDate: startDate || currentDate,
-      endDate: endDate || currentDate,
+      endDate: endDate,
     };
 
     const createdCategory = await this.prisma.category.create({

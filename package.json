@@ -41,6 +41,7 @@
     "ts-morph": "^18.0.0"
   },
   "devDependencies": {
+    "prisma-nestjs-graphql": "^18.0.2",
     "@nestjs/cli": "^9.0.0",
     "@nestjs/schematics": "^9.0.0",
     "@nestjs/testing": "^9.0.0",

@@ -7,6 +7,11 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
+generator nestgraphql {
+    provider = "node node_modules/prisma-nestjs-graphql"
+    output = "../src/@generated"
+}
+
 model User {
   id       String  @id @default(auto()) @map("_id") @db.ObjectId
   username String  @unique
@@ -29,7 +34,7 @@ model Post {
   title      String
   content    String
   score      Int
-  winner     Boolean
+  winner     Boolean?
   userId     String   @db.ObjectId
   user       User     @relation(fields: [userId], references: [id])
   categoryId String   @db.ObjectId

@@ -5,6 +5,7 @@ import {
 } from '@nestjs/common';
 import { PrismaService } from 'prisma/prisma.service';
 import { CreateOneCategoryArgs } from 'src/@generated/category/create-one-category.args';
+import { UpdateOneCategoryArgs } from 'src/@generated/category/update-one-category.args';
 
 @Injectable()
 export class CategoriesService {
@@ -37,9 +38,17 @@ export class CategoriesService {
     return `This action returns a #${id} category`;
   }
 
-  // update(id: number, updateCategoryInput: UpdateCategoryInput) {
-  //   return `This action updates a #${id} category`;
-  // }
+  async update(id: string, updateCategoryInput: UpdateOneCategoryArgs) {
+    try {
+      const updatedCategory = await this.prisma.category.update({
+        ...updateCategoryInput,
+        where: { id },
+      });
+      return updatedCategory;
+    } catch (error) {
+      throw new Error('Unable to update category');
+    }
+  }
 
   async remove(id: string) {
     const category = await this.prisma.category.findUnique({ where: { id } });

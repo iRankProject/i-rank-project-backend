@@ -46,14 +46,6 @@ export class UsersService {
   }
 
   async update(id: string, updateUserInput: UpdateOneUserArgs) {
-    const existingUser = await this.prisma.user.findUnique({
-      where: { id },
-    });
-
-    if (!existingUser) {
-      throw new NotFoundException(`User with id ${id} not found`);
-    }
-
     const { password } = updateUserInput.data;
 
     if (password) {
@@ -69,7 +61,7 @@ export class UsersService {
       });
       return updatedUser;
     } catch (error) {
-      throw new Error('Unable to update');
+      throw new Error('Unable to update user');
     }
   }
 

@@ -6,9 +6,6 @@ import { GraphQLModule } from '@nestjs/graphql';
 import { ApolloDriver, ApolloDriverConfig } from '@nestjs/apollo';
 import { ApolloServerPluginLandingPageLocalDefault } from '@apollo/server/plugin/landingPage/default';
 import { UsersModule } from './users/users.module';
-import { PostsModule } from './posts/posts.module';
-import { VotesModule } from './votes/votes.module';
-import { CategoriesModule } from './categories/categories.module';
 
 @Module({
   imports: [
@@ -17,12 +14,9 @@ import { CategoriesModule } from './categories/categories.module';
       driver: ApolloDriver,
       playground: false,
       plugins: [ApolloServerPluginLandingPageLocalDefault()],
-      typePaths: ['./**/*.graphql'],
+      autoSchemaFile: true,
     }),
     UsersModule,
-    PostsModule,
-    VotesModule,
-    CategoriesModule,
   ],
   controllers: [AppController],
   providers: [AppService],

@@ -8,6 +8,8 @@ import { ApolloServerPluginLandingPageLocalDefault } from '@apollo/server/plugin
 import { UsersModule } from './users/users.module';
 import { join } from 'path';
 import { CategoriesModule } from './categories/categories.module';
+import { VotesModule } from './votes/votes.module';
+import { PostsModule } from './posts/posts.module';
 
 @Module({
   imports: [
@@ -20,6 +22,8 @@ import { CategoriesModule } from './categories/categories.module';
     }),
     UsersModule,
     CategoriesModule,
+    VotesModule,
+    PostsModule,
   ],
   controllers: [AppController],
   providers: [AppService],

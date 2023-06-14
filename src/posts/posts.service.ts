@@ -1,8 +1,7 @@
 import { Injectable, NotFoundException } from '@nestjs/common';
-import { CreatePostInput } from './dto/create-post.input';
-import { UpdatePostInput } from './dto/update-post.input';
 import { CreateOnePostArgs } from 'src/@generated/post/create-one-post.args';
 import { PrismaService } from 'prisma/prisma.service';
+import { UpdateOnePostArgs } from 'src/@generated/post/update-one-post.args';
 
 @Injectable()
 export class PostsService {
@@ -54,11 +53,46 @@ export class PostsService {
     return `This action returns a #${id} post`;
   }
 
-  update(id: number, updatePostInput: UpdatePostInput) {
-    return `This action updates a #${id} post`;
+  async update(id: string, updatePostInput: UpdateOnePostArgs) {
+    const { data } = updatePostInput;
+
+    const existingPost = await this.prisma.post.findUnique({
+      where: { id },
+    });
+
+    if (!existingPost) {
+      throw new NotFoundException(`Post with id ${id} not found`);
+    }
+
+    try {
+      const updatedPost = await this.prisma.post.update({
+        where: { id },
+        data,
+      });
+
+      return updatedPost;
+    } catch (error) {
+      throw new Error('Unable to update post');
+    }
   }
 
-  remove(id: number) {
-    return `This action removes a #${id} post`;
+  async remove(id: string) {
+    const existingPost = await this.prisma.post.findUnique({
+      where: { id },
+    });
+
+    if (!existingPost) {
+      throw new NotFoundException(`Post with id ${id} not found`);
+    }
+
+    try {
+      const removedPost = await this.prisma.post.delete({
+        where: { id },
+      });
+
+      return removedPost;
+    } catch (error) {
+      throw new Error('Unable to remove post');
+    }
   }
 }

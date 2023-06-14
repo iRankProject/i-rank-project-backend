@@ -45,8 +45,13 @@ export class PostsService {
     }
   }
 
-  findAll() {
-    return `This action returns all posts`;
+  async findAll() {
+    try {
+      const posts = await this.prisma.post.findMany();
+      return posts;
+    } catch (error) {
+      throw new Error('Unable to fetch posts');
+    }
   }
 
   findOne(id: number) {

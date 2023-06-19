@@ -20,8 +20,5 @@ export class PostMinAggregateInput {
     winner?: true;
 
     @Field(() => Boolean, {nullable:true})
-    userId?: true;
-
-    @Field(() => Boolean, {nullable:true})
     categoryId?: true;
 }

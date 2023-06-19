@@ -20,9 +20,6 @@ export class PostCountAggregateInput {
     winner?: true;
 
     @Field(() => Boolean, {nullable:true})
-    userId?: true;
-
-    @Field(() => Boolean, {nullable:true})
     categoryId?: true;
 
     @Field(() => Boolean, {nullable:true})

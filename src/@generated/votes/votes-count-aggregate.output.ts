@@ -9,7 +9,7 @@ export class VotesCountAggregate {
     id!: number;
 
     @Field(() => Int, {nullable:false})
-    total_votes!: number;
+    userId!: number;
 
     @Field(() => Int, {nullable:false})
     postId!: number;

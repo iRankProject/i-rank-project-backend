@@ -32,8 +32,5 @@ export class PostScalarWhereWithAggregatesInput {
     winner?: BoolNullableWithAggregatesFilter;
 
     @Field(() => StringWithAggregatesFilter, {nullable:true})
-    userId?: StringWithAggregatesFilter;
-
-    @Field(() => StringWithAggregatesFilter, {nullable:true})
     categoryId?: StringWithAggregatesFilter;
 }

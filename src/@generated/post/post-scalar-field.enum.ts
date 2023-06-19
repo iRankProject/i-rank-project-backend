@@ -6,7 +6,6 @@ export enum PostScalarFieldEnum {
     content = "content",
     score = "score",
     winner = "winner",
-    userId = "userId",
     categoryId = "categoryId"
 }
 

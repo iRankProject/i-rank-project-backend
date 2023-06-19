@@ -1,6 +1,6 @@
 import { Field } from '@nestjs/graphql';
 import { InputType } from '@nestjs/graphql';
-import { Int } from '@nestjs/graphql';
+import { UserCreateNestedOneWithoutVotesInput } from '../user/user-create-nested-one-without-votes.input';
 
 @InputType()
 export class VotesCreateWithoutPostInput {
@@ -8,6 +8,6 @@ export class VotesCreateWithoutPostInput {
     @Field(() => String, {nullable:true})
     id?: string;
 
-    @Field(() => Int, {nullable:false})
-    total_votes!: number;
+    @Field(() => UserCreateNestedOneWithoutVotesInput, {nullable:false})
+    user!: UserCreateNestedOneWithoutVotesInput;
 }

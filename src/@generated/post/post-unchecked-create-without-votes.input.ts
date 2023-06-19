@@ -21,8 +21,5 @@ export class PostUncheckedCreateWithoutVotesInput {
     winner?: boolean;
 
     @Field(() => String, {nullable:false})
-    userId!: string;
-
-    @Field(() => String, {nullable:false})
     categoryId!: string;
 }

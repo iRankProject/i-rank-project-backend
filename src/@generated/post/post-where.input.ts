@@ -3,7 +3,6 @@ import { InputType } from '@nestjs/graphql';
 import { StringFilter } from '../prisma/string-filter.input';
 import { IntFilter } from '../prisma/int-filter.input';
 import { BoolNullableFilter } from '../prisma/bool-nullable-filter.input';
-import { UserRelationFilter } from '../user/user-relation-filter.input';
 import { CategoryRelationFilter } from '../category/category-relation-filter.input';
 import { VotesListRelationFilter } from '../votes/votes-list-relation-filter.input';
 
@@ -35,13 +34,7 @@ export class PostWhereInput {
     winner?: BoolNullableFilter;
 
     @Field(() => StringFilter, {nullable:true})
-    userId?: StringFilter;
-
-    @Field(() => StringFilter, {nullable:true})
     categoryId?: StringFilter;
-
-    @Field(() => UserRelationFilter, {nullable:true})
-    user?: UserRelationFilter;
 
     @Field(() => CategoryRelationFilter, {nullable:true})
     category?: CategoryRelationFilter;

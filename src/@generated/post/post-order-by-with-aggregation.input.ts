@@ -26,9 +26,6 @@ export class PostOrderByWithAggregationInput {
     winner?: keyof typeof SortOrder;
 
     @Field(() => SortOrder, {nullable:true})
-    userId?: keyof typeof SortOrder;
-
-    @Field(() => SortOrder, {nullable:true})
     categoryId?: keyof typeof SortOrder;
 
     @Field(() => PostCountOrderByAggregateInput, {nullable:true})

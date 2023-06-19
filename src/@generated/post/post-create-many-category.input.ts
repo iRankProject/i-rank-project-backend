@@ -19,7 +19,4 @@ export class PostCreateManyCategoryInput {
 
     @Field(() => Boolean, {nullable:true})
     winner?: boolean;
-
-    @Field(() => String, {nullable:false})
-    userId!: string;
 }

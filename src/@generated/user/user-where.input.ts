@@ -1,7 +1,7 @@
 import { Field } from '@nestjs/graphql';
 import { InputType } from '@nestjs/graphql';
 import { StringFilter } from '../prisma/string-filter.input';
-import { PostListRelationFilter } from '../post/post-list-relation-filter.input';
+import { VotesListRelationFilter } from '../votes/votes-list-relation-filter.input';
 
 @InputType()
 export class UserWhereInput {
@@ -27,6 +27,6 @@ export class UserWhereInput {
     @Field(() => StringFilter, {nullable:true})
     password?: StringFilter;
 
-    @Field(() => PostListRelationFilter, {nullable:true})
-    posts?: PostListRelationFilter;
+    @Field(() => VotesListRelationFilter, {nullable:true})
+    votes?: VotesListRelationFilter;
 }

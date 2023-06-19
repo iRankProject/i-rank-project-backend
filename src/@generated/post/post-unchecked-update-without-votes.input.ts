@@ -20,8 +20,5 @@ export class PostUncheckedUpdateWithoutVotesInput {
     winner?: NullableBoolFieldUpdateOperationsInput;
 
     @Field(() => StringFieldUpdateOperationsInput, {nullable:true})
-    userId?: StringFieldUpdateOperationsInput;
-
-    @Field(() => StringFieldUpdateOperationsInput, {nullable:true})
     categoryId?: StringFieldUpdateOperationsInput;
 }

@@ -3,7 +3,6 @@ import { InputType } from '@nestjs/graphql';
 import { StringFieldUpdateOperationsInput } from '../prisma/string-field-update-operations.input';
 import { IntFieldUpdateOperationsInput } from '../prisma/int-field-update-operations.input';
 import { NullableBoolFieldUpdateOperationsInput } from '../prisma/nullable-bool-field-update-operations.input';
-import { UserUpdateOneRequiredWithoutPostsNestedInput } from '../user/user-update-one-required-without-posts-nested.input';
 import { CategoryUpdateOneRequiredWithoutPostsNestedInput } from '../category/category-update-one-required-without-posts-nested.input';
 import { VotesUpdateManyWithoutPostNestedInput } from '../votes/votes-update-many-without-post-nested.input';
 
@@ -21,9 +20,6 @@ export class PostUpdateInput {
 
     @Field(() => NullableBoolFieldUpdateOperationsInput, {nullable:true})
     winner?: NullableBoolFieldUpdateOperationsInput;
-
-    @Field(() => UserUpdateOneRequiredWithoutPostsNestedInput, {nullable:true})
-    user?: UserUpdateOneRequiredWithoutPostsNestedInput;
 
     @Field(() => CategoryUpdateOneRequiredWithoutPostsNestedInput, {nullable:true})
     category?: CategoryUpdateOneRequiredWithoutPostsNestedInput;

@@ -22,9 +22,6 @@ export class PostUncheckedCreateInput {
     winner?: boolean;
 
     @Field(() => String, {nullable:false})
-    userId!: string;
-
-    @Field(() => String, {nullable:false})
     categoryId!: string;
 
     @Field(() => VotesUncheckedCreateNestedManyWithoutPostInput, {nullable:true})

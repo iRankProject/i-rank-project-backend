@@ -2,7 +2,7 @@ import { registerEnumType } from '@nestjs/graphql';
 
 export enum VotesScalarFieldEnum {
     id = "id",
-    total_votes = "total_votes",
+    userId = "userId",
     postId = "postId"
 }
 

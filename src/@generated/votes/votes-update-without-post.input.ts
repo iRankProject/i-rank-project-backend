@@ -1,10 +1,10 @@
 import { Field } from '@nestjs/graphql';
 import { InputType } from '@nestjs/graphql';
-import { IntFieldUpdateOperationsInput } from '../prisma/int-field-update-operations.input';
+import { UserUpdateOneRequiredWithoutVotesNestedInput } from '../user/user-update-one-required-without-votes-nested.input';
 
 @InputType()
 export class VotesUpdateWithoutPostInput {
 
-    @Field(() => IntFieldUpdateOperationsInput, {nullable:true})
-    total_votes?: IntFieldUpdateOperationsInput;
+    @Field(() => UserUpdateOneRequiredWithoutVotesNestedInput, {nullable:true})
+    user?: UserUpdateOneRequiredWithoutVotesNestedInput;
 }

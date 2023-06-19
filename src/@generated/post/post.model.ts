@@ -2,7 +2,6 @@ import { Field } from '@nestjs/graphql';
 import { ObjectType } from '@nestjs/graphql';
 import { ID } from '@nestjs/graphql';
 import { Int } from '@nestjs/graphql';
-import { User } from '../user/user.model';
 import { Category } from '../category/category.model';
 import { Votes } from '../votes/votes.model';
 import { PostCount } from './post-count.output';
@@ -26,13 +25,7 @@ export class Post {
     winner!: boolean | null;
 
     @Field(() => String, {nullable:false})
-    userId!: string;
-
-    @Field(() => String, {nullable:false})
     categoryId!: string;
-
-    @Field(() => User, {nullable:false})
-    user?: User;
 
     @Field(() => Category, {nullable:false})
     category?: Category;

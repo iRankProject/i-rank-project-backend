@@ -21,9 +21,6 @@ export class PostCountAggregate {
     winner!: number;
 
     @Field(() => Int, {nullable:false})
-    userId!: number;
-
-    @Field(() => Int, {nullable:false})
     categoryId!: number;
 
     @Field(() => Int, {nullable:false})

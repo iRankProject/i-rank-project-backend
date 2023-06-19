@@ -1,7 +1,6 @@
 import { Field } from '@nestjs/graphql';
 import { InputType } from '@nestjs/graphql';
 import { StringFilter } from '../prisma/string-filter.input';
-import { IntFilter } from '../prisma/int-filter.input';
 
 @InputType()
 export class VotesScalarWhereInput {
@@ -18,8 +17,8 @@ export class VotesScalarWhereInput {
     @Field(() => StringFilter, {nullable:true})
     id?: StringFilter;
 
-    @Field(() => IntFilter, {nullable:true})
-    total_votes?: IntFilter;
+    @Field(() => StringFilter, {nullable:true})
+    userId?: StringFilter;
 
     @Field(() => StringFilter, {nullable:true})
     postId?: StringFilter;

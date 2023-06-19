@@ -21,8 +21,5 @@ export class PostMaxAggregate {
     winner?: boolean;
 
     @Field(() => String, {nullable:true})
-    userId?: string;
-
-    @Field(() => String, {nullable:true})
     categoryId?: string;
 }

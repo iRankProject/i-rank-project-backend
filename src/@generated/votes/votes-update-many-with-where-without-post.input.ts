@@ -2,7 +2,7 @@ import { Field } from '@nestjs/graphql';
 import { InputType } from '@nestjs/graphql';
 import { VotesScalarWhereInput } from './votes-scalar-where.input';
 import { Type } from 'class-transformer';
-import { VotesUpdateManyMutationInput } from './votes-update-many-mutation.input';
+import { VotesUncheckedUpdateManyWithoutVotesInput } from './votes-unchecked-update-many-without-votes.input';
 
 @InputType()
 export class VotesUpdateManyWithWhereWithoutPostInput {
@@ -11,7 +11,7 @@ export class VotesUpdateManyWithWhereWithoutPostInput {
     @Type(() => VotesScalarWhereInput)
     where!: VotesScalarWhereInput;
 
-    @Field(() => VotesUpdateManyMutationInput, {nullable:false})
-    @Type(() => VotesUpdateManyMutationInput)
-    data!: VotesUpdateManyMutationInput;
+    @Field(() => VotesUncheckedUpdateManyWithoutVotesInput, {nullable:false})
+    @Type(() => VotesUncheckedUpdateManyWithoutVotesInput)
+    data!: VotesUncheckedUpdateManyWithoutVotesInput;
 }

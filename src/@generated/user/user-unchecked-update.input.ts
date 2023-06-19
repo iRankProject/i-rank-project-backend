@@ -1,7 +1,7 @@
 import { Field } from '@nestjs/graphql';
 import { InputType } from '@nestjs/graphql';
 import { StringFieldUpdateOperationsInput } from '../prisma/string-field-update-operations.input';
-import { PostUncheckedUpdateManyWithoutUserNestedInput } from '../post/post-unchecked-update-many-without-user-nested.input';
+import { VotesUncheckedUpdateManyWithoutUserNestedInput } from '../votes/votes-unchecked-update-many-without-user-nested.input';
 
 @InputType()
 export class UserUncheckedUpdateInput {
@@ -15,6 +15,6 @@ export class UserUncheckedUpdateInput {
     @Field(() => StringFieldUpdateOperationsInput, {nullable:true})
     password?: StringFieldUpdateOperationsInput;
 
-    @Field(() => PostUncheckedUpdateManyWithoutUserNestedInput, {nullable:true})
-    posts?: PostUncheckedUpdateManyWithoutUserNestedInput;
+    @Field(() => VotesUncheckedUpdateManyWithoutUserNestedInput, {nullable:true})
+    votes?: VotesUncheckedUpdateManyWithoutUserNestedInput;
 }

@@ -8,7 +8,7 @@ export class VotesMaxAggregateInput {
     id?: true;
 
     @Field(() => Boolean, {nullable:true})
-    total_votes?: true;
+    userId?: true;
 
     @Field(() => Boolean, {nullable:true})
     postId?: true;

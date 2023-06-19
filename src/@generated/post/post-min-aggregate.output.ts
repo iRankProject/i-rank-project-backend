@@ -21,8 +21,5 @@ export class PostMinAggregate {
     winner?: boolean;
 
     @Field(() => String, {nullable:true})
-    userId?: string;
-
-    @Field(() => String, {nullable:true})
     categoryId?: string;
 }

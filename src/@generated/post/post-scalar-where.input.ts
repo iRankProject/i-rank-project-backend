@@ -32,8 +32,5 @@ export class PostScalarWhereInput {
     winner?: BoolNullableFilter;
 
     @Field(() => StringFilter, {nullable:true})
-    userId?: StringFilter;
-
-    @Field(() => StringFilter, {nullable:true})
     categoryId?: StringFilter;
 }

@@ -26,9 +26,6 @@ export class PostGroupBy {
     winner?: boolean;
 
     @Field(() => String, {nullable:false})
-    userId!: string;
-
-    @Field(() => String, {nullable:false})
     categoryId!: string;
 
     @Field(() => PostCountAggregate, {nullable:true})

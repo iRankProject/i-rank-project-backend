@@ -18,7 +18,4 @@ export class PostUncheckedUpdateManyWithoutPostsInput {
 
     @Field(() => NullableBoolFieldUpdateOperationsInput, {nullable:true})
     winner?: NullableBoolFieldUpdateOperationsInput;
-
-    @Field(() => StringFieldUpdateOperationsInput, {nullable:true})
-    categoryId?: StringFieldUpdateOperationsInput;
 }

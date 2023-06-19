@@ -1,6 +1,6 @@
 import { Field } from '@nestjs/graphql';
 import { InputType } from '@nestjs/graphql';
-import { PostCreateNestedManyWithoutUserInput } from '../post/post-create-nested-many-without-user.input';
+import { VotesCreateNestedManyWithoutUserInput } from '../votes/votes-create-nested-many-without-user.input';
 
 @InputType()
 export class UserCreateInput {
@@ -17,6 +17,6 @@ export class UserCreateInput {
     @Field(() => String, {nullable:false})
     password!: string;
 
-    @Field(() => PostCreateNestedManyWithoutUserInput, {nullable:true})
-    posts?: PostCreateNestedManyWithoutUserInput;
+    @Field(() => VotesCreateNestedManyWithoutUserInput, {nullable:true})
+    votes?: VotesCreateNestedManyWithoutUserInput;
 }

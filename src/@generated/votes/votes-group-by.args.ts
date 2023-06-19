@@ -7,8 +7,6 @@ import { VotesScalarFieldEnum } from './votes-scalar-field.enum';
 import { VotesScalarWhereWithAggregatesInput } from './votes-scalar-where-with-aggregates.input';
 import { Int } from '@nestjs/graphql';
 import { VotesCountAggregateInput } from './votes-count-aggregate.input';
-import { VotesAvgAggregateInput } from './votes-avg-aggregate.input';
-import { VotesSumAggregateInput } from './votes-sum-aggregate.input';
 import { VotesMinAggregateInput } from './votes-min-aggregate.input';
 import { VotesMaxAggregateInput } from './votes-max-aggregate.input';
 
@@ -36,12 +34,6 @@ export class VotesGroupByArgs {
 
     @Field(() => VotesCountAggregateInput, {nullable:true})
     _count?: VotesCountAggregateInput;
-
-    @Field(() => VotesAvgAggregateInput, {nullable:true})
-    _avg?: VotesAvgAggregateInput;
-
-    @Field(() => VotesSumAggregateInput, {nullable:true})
-    _sum?: VotesSumAggregateInput;
 
     @Field(() => VotesMinAggregateInput, {nullable:true})
     _min?: VotesMinAggregateInput;

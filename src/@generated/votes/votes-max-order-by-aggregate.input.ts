@@ -9,7 +9,7 @@ export class VotesMaxOrderByAggregateInput {
     id?: keyof typeof SortOrder;
 
     @Field(() => SortOrder, {nullable:true})
-    total_votes?: keyof typeof SortOrder;
+    userId?: keyof typeof SortOrder;
 
     @Field(() => SortOrder, {nullable:true})
     postId?: keyof typeof SortOrder;

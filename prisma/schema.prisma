@@ -13,11 +13,11 @@ generator nestgraphql {
 }
 
 model User {
-  id       String  @id @default(auto()) @map("_id") @db.ObjectId
-  username String  @unique
-  email    String  @unique
+  id       String   @id @default(auto()) @map("_id") @db.ObjectId
+  username String   @unique
+  email    String   @unique
   password String
-  posts    Post[]
+  votes    Votes[]  @relation("UserVotes")
 }
 
 model Category {
@@ -35,8 +35,6 @@ model Post {
   content    String
   score      Int
   winner     Boolean?
-  userId     String   @db.ObjectId
-  user       User     @relation(fields: [userId], references: [id])
   categoryId String   @db.ObjectId
   category   Category @relation(fields: [categoryId], references: [id])
   votes      Votes[]  @relation("PostVotes")
@@ -44,7 +42,10 @@ model Post {
 
 model Votes {
   id      String   @id @default(auto()) @map("_id") @db.ObjectId
-  total_votes Int
+  userId  String   @db.ObjectId
   postId  String   @db.ObjectId
   post    Post     @relation("PostVotes", fields: [postId], references: [id])
+  user    User     @relation("UserVotes", fields: [userId], references: [id])
+  
+  @@unique([userId, postId])
 }

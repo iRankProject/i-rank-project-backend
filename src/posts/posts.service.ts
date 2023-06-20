@@ -9,103 +9,84 @@ export class PostsService {
 
   async create(createPostInput: CreateOnePostArgs) {
     const { data } = createPostInput;
+    const postData = {
+      ...data,
+      category: {
+        connect: { id: data.category.connect.id },
+      },
+    };
 
-    const { user, category, ...postData } = data;
-
-    const existingUser = await this.prisma.user.findUnique({
-      where: { id: user.connect.id },
-    });
-
-    if (!existingUser) {
-      throw new NotFoundException(`User with id ${user.connect.id} not found`);
-    }
-
-    const existingCategory = await this.prisma.category.findUnique({
-      where: { id: category.connect.id },
-    });
-
-    if (!existingCategory) {
-      throw new NotFoundException(
-        `Category with id ${category.connect.id} not found`,
-      );
-    }
-
-    try {
-      const createdPost = await this.prisma.post.create({
-        data: {
-          ...postData,
-          user: { connect: { id: user.connect.id } },
-          category: { connect: { id: category.connect.id } },
+    return this.prisma.post.create({
+      data: {
+        ...postData,
+        votes: {
+          create: data.votes?.create,
         },
-      });
-
-      return createdPost;
-    } catch (error) {
-      throw new Error('Unable to create post');
-    }
-  }
-
-  async findAll() {
-    try {
-      const posts = await this.prisma.post.findMany();
-      return posts;
-    } catch (error) {
-      throw new Error('Unable to fetch posts');
-    }
-  }
-
-  async findOne(id: string) {
-    const post = await this.prisma.post.findUnique({
-      where: { id },
+      },
     });
-
-    if (!post) {
-      throw new NotFoundException(`Post with id ${id} not found`);
-    }
-
-    return post;
   }
 
-  async update(id: string, updatePostInput: UpdateOnePostArgs) {
-    const { data } = updatePostInput;
+  // async findAll() {
+  //   try {
+  //     const posts = await this.prisma.post.findMany();
+  //     return posts;
+  //   } catch (error) {
+  //     throw new Error('Unable to fetch posts');
+  //   }
+  // }
 
-    const existingPost = await this.prisma.post.findUnique({
-      where: { id },
-    });
+  // async findOne(id: string) {
+  //   const post = await this.prisma.post.findUnique({
+  //     where: { id },
+  //   });
 
-    if (!existingPost) {
-      throw new NotFoundException(`Post with id ${id} not found`);
-    }
+  //   if (!post) {
+  //     throw new NotFoundException(`Post with id ${id} not found`);
+  //   }
 
-    try {
-      const updatedPost = await this.prisma.post.update({
-        where: { id },
-        data,
-      });
+  //   return post;
+  // }
 
-      return updatedPost;
-    } catch (error) {
-      throw new Error('Unable to update post');
-    }
-  }
+  // async update(id: string, updatePostInput: UpdateOnePostArgs) {
+  //   const { data } = updatePostInput;
 
-  async remove(id: string) {
-    const existingPost = await this.prisma.post.findUnique({
-      where: { id },
-    });
+  //   const existingPost = await this.prisma.post.findUnique({
+  //     where: { id },
+  //   });
 
-    if (!existingPost) {
-      throw new NotFoundException(`Post with id ${id} not found`);
-    }
+  //   if (!existingPost) {
+  //     throw new NotFoundException(`Post with id ${id} not found`);
+  //   }
 
-    try {
-      const removedPost = await this.prisma.post.delete({
-        where: { id },
-      });
+  //   try {
+  //     const updatedPost = await this.prisma.post.update({
+  //       where: { id },
+  //       data,
+  //     });
 
-      return removedPost;
-    } catch (error) {
-      throw new Error('Unable to remove post');
-    }
-  }
+  //     return updatedPost;
+  //   } catch (error) {
+  //     throw new Error('Unable to update post');
+  //   }
+  // }
+
+  // async remove(id: string) {
+  //   const existingPost = await this.prisma.post.findUnique({
+  //     where: { id },
+  //   });
+
+  //   if (!existingPost) {
+  //     throw new NotFoundException(`Post with id ${id} not found`);
+  //   }
+
+  //   try {
+  //     const removedPost = await this.prisma.post.delete({
+  //       where: { id },
+  //     });
+
+  //     return removedPost;
+  //   } catch (error) {
+  //     throw new Error('Unable to remove post');
+  //   }
+  // }
 }

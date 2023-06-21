@@ -26,67 +26,67 @@ export class PostsService {
     });
   }
 
-  // async findAll() {
-  //   try {
-  //     const posts = await this.prisma.post.findMany();
-  //     return posts;
-  //   } catch (error) {
-  //     throw new Error('Unable to fetch posts');
-  //   }
-  // }
+  async findAll() {
+    try {
+      const posts = await this.prisma.post.findMany();
+      return posts;
+    } catch (error) {
+      throw new Error('Unable to fetch posts');
+    }
+  }
 
-  // async findOne(id: string) {
-  //   const post = await this.prisma.post.findUnique({
-  //     where: { id },
-  //   });
+  async findOne(id: string) {
+    const post = await this.prisma.post.findUnique({
+      where: { id },
+    });
 
-  //   if (!post) {
-  //     throw new NotFoundException(`Post with id ${id} not found`);
-  //   }
+    if (!post) {
+      throw new NotFoundException(`Post with id ${id} not found`);
+    }
 
-  //   return post;
-  // }
+    return post;
+  }
 
-  // async update(id: string, updatePostInput: UpdateOnePostArgs) {
-  //   const { data } = updatePostInput;
+  async update(id: string, updatePostInput: UpdateOnePostArgs) {
+    const { data } = updatePostInput;
 
-  //   const existingPost = await this.prisma.post.findUnique({
-  //     where: { id },
-  //   });
+    const existingPost = await this.prisma.post.findUnique({
+      where: { id },
+    });
 
-  //   if (!existingPost) {
-  //     throw new NotFoundException(`Post with id ${id} not found`);
-  //   }
+    if (!existingPost) {
+      throw new NotFoundException(`Post with id ${id} not found`);
+    }
 
-  //   try {
-  //     const updatedPost = await this.prisma.post.update({
-  //       where: { id },
-  //       data,
-  //     });
+    try {
+      const updatedPost = await this.prisma.post.update({
+        where: { id },
+        data,
+      });
 
-  //     return updatedPost;
-  //   } catch (error) {
-  //     throw new Error('Unable to update post');
-  //   }
-  // }
+      return updatedPost;
+    } catch (error) {
+      throw new Error('Unable to update post');
+    }
+  }
 
-  // async remove(id: string) {
-  //   const existingPost = await this.prisma.post.findUnique({
-  //     where: { id },
-  //   });
+  async remove(id: string) {
+    const existingPost = await this.prisma.post.findUnique({
+      where: { id },
+    });
 
-  //   if (!existingPost) {
-  //     throw new NotFoundException(`Post with id ${id} not found`);
-  //   }
+    if (!existingPost) {
+      throw new NotFoundException(`Post with id ${id} not found`);
+    }
 
-  //   try {
-  //     const removedPost = await this.prisma.post.delete({
-  //       where: { id },
-  //     });
+    try {
+      const removedPost = await this.prisma.post.delete({
+        where: { id },
+      });
 
-  //     return removedPost;
-  //   } catch (error) {
-  //     throw new Error('Unable to remove post');
-  //   }
-  // }
+      return removedPost;
+    } catch (error) {
+      throw new Error('Unable to remove post');
+    }
+  }
 }

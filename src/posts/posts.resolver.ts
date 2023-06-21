@@ -12,24 +12,24 @@ export class PostsResolver {
     return this.postsService.create(createPostInput);
   }
 
-  // @Query(() => [Post], { name: 'posts' })
-  // findAll() {
-  //   return this.postsService.findAll();
-  // }
+  @Query(() => [Post], { name: 'posts' })
+  findAll() {
+    return this.postsService.findAll();
+  }
 
-  // @Query(() => Post, { name: 'post' })
-  // findOne(@Args('id', { type: () => String }) id: string) {
-  //   return this.postsService.findOne(id);
-  // }
+  @Query(() => Post, { name: 'post' })
+  findOne(@Args('id', { type: () => String }) id: string) {
+    return this.postsService.findOne(id);
+  }
 
-  // @Mutation(() => Post)
-  // updatePost(@Args() updatePostInput: UpdateOnePostArgs) {
-  //   const id = updatePostInput.where.id;
-  //   return this.postsService.update(id, updatePostInput);
-  // }
+  @Mutation(() => Post)
+  updatePost(@Args() updatePostInput: UpdateOnePostArgs) {
+    const id = updatePostInput.where.id;
+    return this.postsService.update(id, updatePostInput);
+  }
 
-  // @Mutation(() => Post)
-  // removePost(@Args('id', { type: () => String }) id: string) {
-  //   return this.postsService.remove(id);
-  // }
+  @Mutation(() => Post)
+  removePost(@Args('id', { type: () => String }) id: string) {
+    return this.postsService.remove(id);
+  }
 }

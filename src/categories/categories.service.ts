@@ -34,8 +34,14 @@ export class CategoriesService {
     return this.prisma.category.findMany();
   }
 
-  findOne(id: number) {
-    return `This action returns a #${id} category`;
+  async findOne(id: string) {
+    const category = await this.prisma.category.findUnique({ where: { id } });
+
+    if (!category) {
+      throw new NotFoundException(`Category with id ${id} not found`);
+    }
+
+    return category;
   }
 
   async update(id: string, updateCategoryInput: UpdateOneCategoryArgs) {

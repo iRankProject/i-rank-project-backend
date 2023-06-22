@@ -1,6 +1,7 @@
 import { Injectable } from '@nestjs/common';
 import { PrismaService } from 'prisma/prisma.service';
 import { CreateOneVotesArgs } from 'src/@generated/votes/create-one-votes.args';
+import { FindManyVotesArgs } from 'src/@generated/votes/find-many-votes.args';
 
 @Injectable()
 export class VotesService {
@@ -24,8 +25,17 @@ export class VotesService {
     // }
   }
 
-  findAll() {
-    return `This action returns all votes`;
+  findAllByUserId(findAllByUserId: FindManyVotesArgs) {
+    const { where, orderBy, cursor, take, skip, distinct } = findAllByUserId;
+
+    return this.prisma.votes.findMany({
+      where,
+      orderBy,
+      cursor,
+      take,
+      skip,
+      distinct,
+    });
   }
 
   findOne(id: number) {

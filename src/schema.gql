@@ -1,0 +1,741 @@
+# ------------------------------------------------------
+# THIS FILE WAS AUTOMATICALLY GENERATED (DO NOT MODIFY)
+# ------------------------------------------------------
+
+type CategoryCount {
+  posts: Int!
+}
+
+type Category {
+  id: ID!
+  name: String!
+  description: String!
+  startDate: DateTime
+  endDate: DateTime
+  posts: [Post!]
+  _count: CategoryCount!
+}
+
+"""
+A date-time string at UTC, such as 2019-12-03T09:54:33Z, compliant with the date-time format.
+"""
+scalar DateTime
+
+type PostCount {
+  votes: Int!
+}
+
+type Post {
+  id: ID!
+  title: String!
+  content: String!
+  score: Int!
+  winner: Boolean
+  categoryId: String!
+  category: Category!
+  votes: [Votes!]
+  _count: PostCount!
+}
+
+type Votes {
+  id: ID!
+  userId: String!
+  postId: String!
+  post: Post!
+  user: User!
+}
+
+type UserCount {
+  votes: Int!
+}
+
+type User {
+  id: ID!
+  username: String!
+  email: String!
+  password: String!
+  votes: [Votes!]
+  _count: UserCount!
+}
+
+type Query {
+  users: [User!]!
+  user(id: String!): User!
+  categories: [Category!]!
+  category(id: String!): Category!
+  votes(where: VotesWhereInput, orderBy: [VotesOrderByWithRelationInput!], cursor: VotesWhereUniqueInput, take: Int, skip: Int, distinct: [VotesScalarFieldEnum!]): [Votes!]!
+  posts: [Post!]!
+  post(id: String!): Post!
+}
+
+input VotesWhereInput {
+  AND: [VotesWhereInput!]
+  OR: [VotesWhereInput!]
+  NOT: [VotesWhereInput!]
+  id: StringFilter
+  userId: StringFilter
+  postId: StringFilter
+  post: PostRelationFilter
+  user: UserRelationFilter
+}
+
+input StringFilter {
+  equals: String
+  in: [String!]
+  notIn: [String!]
+  lt: String
+  lte: String
+  gt: String
+  gte: String
+  contains: String
+  startsWith: String
+  endsWith: String
+  mode: QueryMode
+  not: NestedStringFilter
+}
+
+enum QueryMode {
+  default
+  insensitive
+}
+
+input NestedStringFilter {
+  equals: String
+  in: [String!]
+  notIn: [String!]
+  lt: String
+  lte: String
+  gt: String
+  gte: String
+  contains: String
+  startsWith: String
+  endsWith: String
+  not: NestedStringFilter
+}
+
+input PostRelationFilter {
+  is: PostWhereInput
+  isNot: PostWhereInput
+}
+
+input PostWhereInput {
+  AND: [PostWhereInput!]
+  OR: [PostWhereInput!]
+  NOT: [PostWhereInput!]
+  id: StringFilter
+  title: StringFilter
+  content: StringFilter
+  score: IntFilter
+  winner: BoolNullableFilter
+  categoryId: StringFilter
+  category: CategoryRelationFilter
+  votes: VotesListRelationFilter
+}
+
+input IntFilter {
+  equals: Int
+  in: [Int!]
+  notIn: [Int!]
+  lt: Int
+  lte: Int
+  gt: Int
+  gte: Int
+  not: NestedIntFilter
+}
+
+input NestedIntFilter {
+  equals: Int
+  in: [Int!]
+  notIn: [Int!]
+  lt: Int
+  lte: Int
+  gt: Int
+  gte: Int
+  not: NestedIntFilter
+}
+
+input BoolNullableFilter {
+  equals: Boolean
+  not: NestedBoolNullableFilter
+  isSet: Boolean
+}
+
+input NestedBoolNullableFilter {
+  equals: Boolean
+  not: NestedBoolNullableFilter
+  isSet: Boolean
+}
+
+input CategoryRelationFilter {
+  is: CategoryWhereInput
+  isNot: CategoryWhereInput
+}
+
+input CategoryWhereInput {
+  AND: [CategoryWhereInput!]
+  OR: [CategoryWhereInput!]
+  NOT: [CategoryWhereInput!]
+  id: StringFilter
+  name: StringFilter
+  description: StringFilter
+  startDate: DateTimeNullableFilter
+  endDate: DateTimeNullableFilter
+  posts: PostListRelationFilter
+}
+
+input DateTimeNullableFilter {
+  equals: DateTime
+  in: [DateTime!]
+  notIn: [DateTime!]
+  lt: DateTime
+  lte: DateTime
+  gt: DateTime
+  gte: DateTime
+  not: NestedDateTimeNullableFilter
+  isSet: Boolean
+}
+
+input NestedDateTimeNullableFilter {
+  equals: DateTime
+  in: [DateTime!]
+  notIn: [DateTime!]
+  lt: DateTime
+  lte: DateTime
+  gt: DateTime
+  gte: DateTime
+  not: NestedDateTimeNullableFilter
+  isSet: Boolean
+}
+
+input PostListRelationFilter {
+  every: PostWhereInput
+  some: PostWhereInput
+  none: PostWhereInput
+}
+
+input VotesListRelationFilter {
+  every: VotesWhereInput
+  some: VotesWhereInput
+  none: VotesWhereInput
+}
+
+input UserRelationFilter {
+  is: UserWhereInput
+  isNot: UserWhereInput
+}
+
+input UserWhereInput {
+  AND: [UserWhereInput!]
+  OR: [UserWhereInput!]
+  NOT: [UserWhereInput!]
+  id: StringFilter
+  username: StringFilter
+  email: StringFilter
+  password: StringFilter
+  votes: VotesListRelationFilter
+}
+
+input VotesOrderByWithRelationInput {
+  id: SortOrder
+  userId: SortOrder
+  postId: SortOrder
+  post: PostOrderByWithRelationInput
+  user: UserOrderByWithRelationInput
+}
+
+enum SortOrder {
+  asc
+  desc
+}
+
+input PostOrderByWithRelationInput {
+  id: SortOrder
+  title: SortOrder
+  content: SortOrder
+  score: SortOrder
+  winner: SortOrder
+  categoryId: SortOrder
+  category: CategoryOrderByWithRelationInput
+  votes: VotesOrderByRelationAggregateInput
+}
+
+input CategoryOrderByWithRelationInput {
+  id: SortOrder
+  name: SortOrder
+  description: SortOrder
+  startDate: SortOrder
+  endDate: SortOrder
+  posts: PostOrderByRelationAggregateInput
+}
+
+input PostOrderByRelationAggregateInput {
+  _count: SortOrder
+}
+
+input VotesOrderByRelationAggregateInput {
+  _count: SortOrder
+}
+
+input UserOrderByWithRelationInput {
+  id: SortOrder
+  username: SortOrder
+  email: SortOrder
+  password: SortOrder
+  votes: VotesOrderByRelationAggregateInput
+}
+
+input VotesWhereUniqueInput {
+  id: String
+  userId_postId: VotesUserIdPostIdCompoundUniqueInput
+}
+
+input VotesUserIdPostIdCompoundUniqueInput {
+  userId: String!
+  postId: String!
+}
+
+enum VotesScalarFieldEnum {
+  id
+  userId
+  postId
+}
+
+type Mutation {
+  createUser(data: UserCreateInput!): User!
+  updateUser(data: UserUpdateInput!, where: UserWhereUniqueInput!): User!
+  removeUser(id: String!): User!
+  createCategory(data: CategoryCreateInput!): Category!
+  updateCategory(data: CategoryUpdateInput!, where: CategoryWhereUniqueInput!): Category!
+  removeCategory(id: String!): Category!
+  createPost(data: PostCreateInput!): Post!
+  updatePost(data: PostUpdateInput!, where: PostWhereUniqueInput!): Post!
+  removePost(id: String!): Post!
+}
+
+input UserCreateInput {
+  id: String
+  username: String!
+  email: String!
+  password: String!
+  votes: VotesCreateNestedManyWithoutUserInput
+}
+
+input VotesCreateNestedManyWithoutUserInput {
+  create: [VotesCreateWithoutUserInput!]
+  connectOrCreate: [VotesCreateOrConnectWithoutUserInput!]
+  createMany: VotesCreateManyUserInputEnvelope
+  connect: [VotesWhereUniqueInput!]
+}
+
+input VotesCreateWithoutUserInput {
+  id: String
+  post: PostCreateNestedOneWithoutVotesInput!
+}
+
+input PostCreateNestedOneWithoutVotesInput {
+  create: PostCreateWithoutVotesInput
+  connectOrCreate: PostCreateOrConnectWithoutVotesInput
+  connect: PostWhereUniqueInput
+}
+
+input PostCreateWithoutVotesInput {
+  id: String
+  title: String!
+  content: String!
+  score: Int!
+  winner: Boolean
+  category: CategoryCreateNestedOneWithoutPostsInput!
+}
+
+input CategoryCreateNestedOneWithoutPostsInput {
+  create: CategoryCreateWithoutPostsInput
+  connectOrCreate: CategoryCreateOrConnectWithoutPostsInput
+  connect: CategoryWhereUniqueInput
+}
+
+input CategoryCreateWithoutPostsInput {
+  id: String
+  name: String!
+  description: String!
+  startDate: DateTime
+  endDate: DateTime
+}
+
+input CategoryCreateOrConnectWithoutPostsInput {
+  where: CategoryWhereUniqueInput!
+  create: CategoryCreateWithoutPostsInput!
+}
+
+input CategoryWhereUniqueInput {
+  id: String
+  name: String
+}
+
+input PostCreateOrConnectWithoutVotesInput {
+  where: PostWhereUniqueInput!
+  create: PostCreateWithoutVotesInput!
+}
+
+input PostWhereUniqueInput {
+  id: String
+}
+
+input VotesCreateOrConnectWithoutUserInput {
+  where: VotesWhereUniqueInput!
+  create: VotesCreateWithoutUserInput!
+}
+
+input VotesCreateManyUserInputEnvelope {
+  data: [VotesCreateManyUserInput!]!
+}
+
+input VotesCreateManyUserInput {
+  id: String
+  postId: String!
+}
+
+input UserUpdateInput {
+  username: StringFieldUpdateOperationsInput
+  email: StringFieldUpdateOperationsInput
+  password: StringFieldUpdateOperationsInput
+  votes: VotesUpdateManyWithoutUserNestedInput
+}
+
+input StringFieldUpdateOperationsInput {
+  set: String
+}
+
+input VotesUpdateManyWithoutUserNestedInput {
+  create: [VotesCreateWithoutUserInput!]
+  connectOrCreate: [VotesCreateOrConnectWithoutUserInput!]
+  upsert: [VotesUpsertWithWhereUniqueWithoutUserInput!]
+  createMany: VotesCreateManyUserInputEnvelope
+  set: [VotesWhereUniqueInput!]
+  disconnect: [VotesWhereUniqueInput!]
+  delete: [VotesWhereUniqueInput!]
+  connect: [VotesWhereUniqueInput!]
+  update: [VotesUpdateWithWhereUniqueWithoutUserInput!]
+  updateMany: [VotesUpdateManyWithWhereWithoutUserInput!]
+  deleteMany: [VotesScalarWhereInput!]
+}
+
+input VotesUpsertWithWhereUniqueWithoutUserInput {
+  where: VotesWhereUniqueInput!
+  update: VotesUpdateWithoutUserInput!
+  create: VotesCreateWithoutUserInput!
+}
+
+input VotesUpdateWithoutUserInput {
+  post: PostUpdateOneRequiredWithoutVotesNestedInput
+}
+
+input PostUpdateOneRequiredWithoutVotesNestedInput {
+  create: PostCreateWithoutVotesInput
+  connectOrCreate: PostCreateOrConnectWithoutVotesInput
+  upsert: PostUpsertWithoutVotesInput
+  connect: PostWhereUniqueInput
+  update: PostUpdateWithoutVotesInput
+}
+
+input PostUpsertWithoutVotesInput {
+  update: PostUpdateWithoutVotesInput!
+  create: PostCreateWithoutVotesInput!
+}
+
+input PostUpdateWithoutVotesInput {
+  title: StringFieldUpdateOperationsInput
+  content: StringFieldUpdateOperationsInput
+  score: IntFieldUpdateOperationsInput
+  winner: NullableBoolFieldUpdateOperationsInput
+  category: CategoryUpdateOneRequiredWithoutPostsNestedInput
+}
+
+input IntFieldUpdateOperationsInput {
+  set: Int
+  increment: Int
+  decrement: Int
+  multiply: Int
+  divide: Int
+}
+
+input NullableBoolFieldUpdateOperationsInput {
+  set: Boolean
+  unset: Boolean
+}
+
+input CategoryUpdateOneRequiredWithoutPostsNestedInput {
+  create: CategoryCreateWithoutPostsInput
+  connectOrCreate: CategoryCreateOrConnectWithoutPostsInput
+  upsert: CategoryUpsertWithoutPostsInput
+  connect: CategoryWhereUniqueInput
+  update: CategoryUpdateWithoutPostsInput
+}
+
+input CategoryUpsertWithoutPostsInput {
+  update: CategoryUpdateWithoutPostsInput!
+  create: CategoryCreateWithoutPostsInput!
+}
+
+input CategoryUpdateWithoutPostsInput {
+  name: StringFieldUpdateOperationsInput
+  description: StringFieldUpdateOperationsInput
+  startDate: NullableDateTimeFieldUpdateOperationsInput
+  endDate: NullableDateTimeFieldUpdateOperationsInput
+}
+
+input NullableDateTimeFieldUpdateOperationsInput {
+  set: DateTime
+  unset: Boolean
+}
+
+input VotesUpdateWithWhereUniqueWithoutUserInput {
+  where: VotesWhereUniqueInput!
+  data: VotesUpdateWithoutUserInput!
+}
+
+input VotesUpdateManyWithWhereWithoutUserInput {
+  where: VotesScalarWhereInput!
+  data: VotesUncheckedUpdateManyWithoutVotesInput!
+}
+
+input VotesScalarWhereInput {
+  AND: [VotesScalarWhereInput!]
+  OR: [VotesScalarWhereInput!]
+  NOT: [VotesScalarWhereInput!]
+  id: StringFilter
+  userId: StringFilter
+  postId: StringFilter
+}
+
+input VotesUncheckedUpdateManyWithoutVotesInput {
+  postId: StringFieldUpdateOperationsInput
+}
+
+input UserWhereUniqueInput {
+  id: String
+  username: String
+  email: String
+}
+
+input CategoryCreateInput {
+  id: String
+  name: String!
+  description: String!
+  startDate: DateTime
+  endDate: DateTime
+  posts: PostCreateNestedManyWithoutCategoryInput
+}
+
+input PostCreateNestedManyWithoutCategoryInput {
+  create: [PostCreateWithoutCategoryInput!]
+  connectOrCreate: [PostCreateOrConnectWithoutCategoryInput!]
+  createMany: PostCreateManyCategoryInputEnvelope
+  connect: [PostWhereUniqueInput!]
+}
+
+input PostCreateWithoutCategoryInput {
+  id: String
+  title: String!
+  content: String!
+  score: Int!
+  winner: Boolean
+  votes: VotesCreateNestedManyWithoutPostInput
+}
+
+input VotesCreateNestedManyWithoutPostInput {
+  create: [VotesCreateWithoutPostInput!]
+  connectOrCreate: [VotesCreateOrConnectWithoutPostInput!]
+  createMany: VotesCreateManyPostInputEnvelope
+  connect: [VotesWhereUniqueInput!]
+}
+
+input VotesCreateWithoutPostInput {
+  id: String
+  user: UserCreateNestedOneWithoutVotesInput!
+}
+
+input UserCreateNestedOneWithoutVotesInput {
+  create: UserCreateWithoutVotesInput
+  connectOrCreate: UserCreateOrConnectWithoutVotesInput
+  connect: UserWhereUniqueInput
+}
+
+input UserCreateWithoutVotesInput {
+  id: String
+  username: String!
+  email: String!
+  password: String!
+}
+
+input UserCreateOrConnectWithoutVotesInput {
+  where: UserWhereUniqueInput!
+  create: UserCreateWithoutVotesInput!
+}
+
+input VotesCreateOrConnectWithoutPostInput {
+  where: VotesWhereUniqueInput!
+  create: VotesCreateWithoutPostInput!
+}
+
+input VotesCreateManyPostInputEnvelope {
+  data: [VotesCreateManyPostInput!]!
+}
+
+input VotesCreateManyPostInput {
+  id: String
+  userId: String!
+}
+
+input PostCreateOrConnectWithoutCategoryInput {
+  where: PostWhereUniqueInput!
+  create: PostCreateWithoutCategoryInput!
+}
+
+input PostCreateManyCategoryInputEnvelope {
+  data: [PostCreateManyCategoryInput!]!
+}
+
+input PostCreateManyCategoryInput {
+  id: String
+  title: String!
+  content: String!
+  score: Int!
+  winner: Boolean
+}
+
+input CategoryUpdateInput {
+  name: StringFieldUpdateOperationsInput
+  description: StringFieldUpdateOperationsInput
+  startDate: NullableDateTimeFieldUpdateOperationsInput
+  endDate: NullableDateTimeFieldUpdateOperationsInput
+  posts: PostUpdateManyWithoutCategoryNestedInput
+}
+
+input PostUpdateManyWithoutCategoryNestedInput {
+  create: [PostCreateWithoutCategoryInput!]
+  connectOrCreate: [PostCreateOrConnectWithoutCategoryInput!]
+  upsert: [PostUpsertWithWhereUniqueWithoutCategoryInput!]
+  createMany: PostCreateManyCategoryInputEnvelope
+  set: [PostWhereUniqueInput!]
+  disconnect: [PostWhereUniqueInput!]
+  delete: [PostWhereUniqueInput!]
+  connect: [PostWhereUniqueInput!]
+  update: [PostUpdateWithWhereUniqueWithoutCategoryInput!]
+  updateMany: [PostUpdateManyWithWhereWithoutCategoryInput!]
+  deleteMany: [PostScalarWhereInput!]
+}
+
+input PostUpsertWithWhereUniqueWithoutCategoryInput {
+  where: PostWhereUniqueInput!
+  update: PostUpdateWithoutCategoryInput!
+  create: PostCreateWithoutCategoryInput!
+}
+
+input PostUpdateWithoutCategoryInput {
+  title: StringFieldUpdateOperationsInput
+  content: StringFieldUpdateOperationsInput
+  score: IntFieldUpdateOperationsInput
+  winner: NullableBoolFieldUpdateOperationsInput
+  votes: VotesUpdateManyWithoutPostNestedInput
+}
+
+input VotesUpdateManyWithoutPostNestedInput {
+  create: [VotesCreateWithoutPostInput!]
+  connectOrCreate: [VotesCreateOrConnectWithoutPostInput!]
+  upsert: [VotesUpsertWithWhereUniqueWithoutPostInput!]
+  createMany: VotesCreateManyPostInputEnvelope
+  set: [VotesWhereUniqueInput!]
+  disconnect: [VotesWhereUniqueInput!]
+  delete: [VotesWhereUniqueInput!]
+  connect: [VotesWhereUniqueInput!]
+  update: [VotesUpdateWithWhereUniqueWithoutPostInput!]
+  updateMany: [VotesUpdateManyWithWhereWithoutPostInput!]
+  deleteMany: [VotesScalarWhereInput!]
+}
+
+input VotesUpsertWithWhereUniqueWithoutPostInput {
+  where: VotesWhereUniqueInput!
+  update: VotesUpdateWithoutPostInput!
+  create: VotesCreateWithoutPostInput!
+}
+
+input VotesUpdateWithoutPostInput {
+  user: UserUpdateOneRequiredWithoutVotesNestedInput
+}
+
+input UserUpdateOneRequiredWithoutVotesNestedInput {
+  create: UserCreateWithoutVotesInput
+  connectOrCreate: UserCreateOrConnectWithoutVotesInput
+  upsert: UserUpsertWithoutVotesInput
+  connect: UserWhereUniqueInput
+  update: UserUpdateWithoutVotesInput
+}
+
+input UserUpsertWithoutVotesInput {
+  update: UserUpdateWithoutVotesInput!
+  create: UserCreateWithoutVotesInput!
+}
+
+input UserUpdateWithoutVotesInput {
+  username: StringFieldUpdateOperationsInput
+  email: StringFieldUpdateOperationsInput
+  password: StringFieldUpdateOperationsInput
+}
+
+input VotesUpdateWithWhereUniqueWithoutPostInput {
+  where: VotesWhereUniqueInput!
+  data: VotesUpdateWithoutPostInput!
+}
+
+input VotesUpdateManyWithWhereWithoutPostInput {
+  where: VotesScalarWhereInput!
+  data: VotesUncheckedUpdateManyWithoutVotesInput!
+}
+
+input PostUpdateWithWhereUniqueWithoutCategoryInput {
+  where: PostWhereUniqueInput!
+  data: PostUpdateWithoutCategoryInput!
+}
+
+input PostUpdateManyWithWhereWithoutCategoryInput {
+  where: PostScalarWhereInput!
+  data: PostUpdateManyMutationInput!
+}
+
+input PostScalarWhereInput {
+  AND: [PostScalarWhereInput!]
+  OR: [PostScalarWhereInput!]
+  NOT: [PostScalarWhereInput!]
+  id: StringFilter
+  title: StringFilter
+  content: StringFilter
+  score: IntFilter
+  winner: BoolNullableFilter
+  categoryId: StringFilter
+}
+
+input PostUpdateManyMutationInput {
+  title: StringFieldUpdateOperationsInput
+  content: StringFieldUpdateOperationsInput
+  score: IntFieldUpdateOperationsInput
+  winner: NullableBoolFieldUpdateOperationsInput
+}
+
+input PostCreateInput {
+  id: String
+  title: String!
+  content: String!
+  score: Int!
+  winner: Boolean
+  category: CategoryCreateNestedOneWithoutPostsInput!
+  votes: VotesCreateNestedManyWithoutPostInput
+}
+
+input PostUpdateInput {
+  title: StringFieldUpdateOperationsInput
+  content: StringFieldUpdateOperationsInput
+  score: IntFieldUpdateOperationsInput
+  winner: NullableBoolFieldUpdateOperationsInput
+  category: CategoryUpdateOneRequiredWithoutPostsNestedInput
+  votes: VotesUpdateManyWithoutPostNestedInput
+}

@@ -54,8 +54,15 @@ type User {
   username: String!
   email: String!
   password: String!
+  hashedRefreshToken: String
   votes: [Votes!]
   _count: UserCount!
+}
+
+type SignResponse {
+  accessToken: String!
+  refreshToken: String!
+  user: User!
 }
 
 type Query {
@@ -232,7 +239,39 @@ input UserWhereInput {
   username: StringFilter
   email: StringFilter
   password: StringFilter
+  hashedRefreshToken: StringNullableFilter
   votes: VotesListRelationFilter
+}
+
+input StringNullableFilter {
+  equals: String
+  in: [String!]
+  notIn: [String!]
+  lt: String
+  lte: String
+  gt: String
+  gte: String
+  contains: String
+  startsWith: String
+  endsWith: String
+  mode: QueryMode
+  not: NestedStringNullableFilter
+  isSet: Boolean
+}
+
+input NestedStringNullableFilter {
+  equals: String
+  in: [String!]
+  notIn: [String!]
+  lt: String
+  lte: String
+  gt: String
+  gte: String
+  contains: String
+  startsWith: String
+  endsWith: String
+  not: NestedStringNullableFilter
+  isSet: Boolean
 }
 
 input VotesOrderByWithRelationInput {
@@ -281,6 +320,7 @@ input UserOrderByWithRelationInput {
   username: SortOrder
   email: SortOrder
   password: SortOrder
+  hashedRefreshToken: SortOrder
   votes: VotesOrderByRelationAggregateInput
 }
 
@@ -310,6 +350,7 @@ type Mutation {
   createPost(data: PostCreateInput!): Post!
   updatePost(data: PostUpdateInput!, where: PostWhereUniqueInput!): Post!
   removePost(id: String!): Post!
+  signup(signUpInput: SignUpInput!): SignResponse!
 }
 
 input UserCreateInput {
@@ -317,6 +358,7 @@ input UserCreateInput {
   username: String!
   email: String!
   password: String!
+  hashedRefreshToken: String
   votes: VotesCreateNestedManyWithoutUserInput
 }
 
@@ -398,11 +440,17 @@ input UserUpdateInput {
   username: StringFieldUpdateOperationsInput
   email: StringFieldUpdateOperationsInput
   password: StringFieldUpdateOperationsInput
+  hashedRefreshToken: NullableStringFieldUpdateOperationsInput
   votes: VotesUpdateManyWithoutUserNestedInput
 }
 
 input StringFieldUpdateOperationsInput {
   set: String
+}
+
+input NullableStringFieldUpdateOperationsInput {
+  set: String
+  unset: Boolean
 }
 
 input VotesUpdateManyWithoutUserNestedInput {
@@ -565,6 +613,7 @@ input UserCreateWithoutVotesInput {
   username: String!
   email: String!
   password: String!
+  hashedRefreshToken: String
 }
 
 input UserCreateOrConnectWithoutVotesInput {
@@ -680,6 +729,7 @@ input UserUpdateWithoutVotesInput {
   username: StringFieldUpdateOperationsInput
   email: StringFieldUpdateOperationsInput
   password: StringFieldUpdateOperationsInput
+  hashedRefreshToken: NullableStringFieldUpdateOperationsInput
 }
 
 input VotesUpdateWithWhereUniqueWithoutPostInput {
@@ -738,4 +788,10 @@ input PostUpdateInput {
   winner: NullableBoolFieldUpdateOperationsInput
   category: CategoryUpdateOneRequiredWithoutPostsNestedInput
   votes: VotesUpdateManyWithoutPostNestedInput
+}
+
+input SignUpInput {
+  username: String!
+  email: String!
+  password: String!
 }

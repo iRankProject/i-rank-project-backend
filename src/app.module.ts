@@ -10,10 +10,11 @@ import { join } from 'path';
 import { CategoriesModule } from './categories/categories.module';
 import { VotesModule } from './votes/votes.module';
 import { PostsModule } from './posts/posts.module';
+import { AuthModule } from './auth/auth.module';
 
 @Module({
   imports: [
-    ConfigModule.forRoot(),
+    ConfigModule.forRoot({ isGlobal: true }),
     GraphQLModule.forRoot<ApolloDriverConfig>({
       driver: ApolloDriver,
       playground: false,
@@ -24,6 +25,7 @@ import { PostsModule } from './posts/posts.module';
     CategoriesModule,
     VotesModule,
     PostsModule,
+    AuthModule,
   ],
   controllers: [AppController],
   providers: [AppService],

@@ -19,6 +19,9 @@ export class User {
     @Field(() => String, {nullable:false})
     password!: string;
 
+    @Field(() => String, {nullable:true})
+    hashedRefreshToken!: string | null;
+
     @Field(() => [Votes], {nullable:true})
     votes?: Array<Votes>;
 

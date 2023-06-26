@@ -17,6 +17,9 @@ export class UserCreateInput {
     @Field(() => String, {nullable:false})
     password!: string;
 
+    @Field(() => String, {nullable:true})
+    hashedRefreshToken?: string;
+
     @Field(() => VotesCreateNestedManyWithoutUserInput, {nullable:true})
     votes?: VotesCreateNestedManyWithoutUserInput;
 }

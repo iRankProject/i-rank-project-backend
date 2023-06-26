@@ -15,4 +15,7 @@ export class UserCreateManyInput {
 
     @Field(() => String, {nullable:false})
     password!: string;
+
+    @Field(() => String, {nullable:true})
+    hashedRefreshToken?: string;
 }

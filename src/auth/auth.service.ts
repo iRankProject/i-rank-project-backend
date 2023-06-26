@@ -4,6 +4,9 @@ import { PrismaService } from 'prisma/prisma.service';
 import { JwtService } from '@nestjs/jwt';
 import { ConfigService } from '@nestjs/config';
 import { encodePassword } from 'src/utils/bcrypt';
+import { SignInInput } from './dto/signin.input';
+import { ForbiddenError } from '@nestjs/apollo';
+import * as bcrypt from 'bcrypt';
 
 @Injectable()
 export class AuthService {
@@ -79,5 +82,33 @@ export class AuthService {
       where: { id: userId },
       data: { hashedRefreshToken },
     });
+  }
+
+  async signin(signInInput: SignInInput) {
+    const user = await this.prisma.user.findUnique({
+      where: { email: signInInput.email },
+    });
+
+    if (!user) {
+      throw new ForbiddenError('Access Denied');
+    }
+
+    const doPasswordsMatch = await bcrypt.compare(
+      signInInput.password,
+      user.password,
+    );
+
+    if (!doPasswordsMatch) {
+      throw new ForbiddenError('Access Denied');
+    }
+
+    const { accessToken, refreshToken } = await this.createTokens(
+      user.id,
+      user.email,
+    );
+
+    await this.updateRefreshToken(user.id, refreshToken);
+
+    return { accessToken, refreshToken, user };
   }
 }

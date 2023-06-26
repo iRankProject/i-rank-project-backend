@@ -351,6 +351,7 @@ type Mutation {
   updatePost(data: PostUpdateInput!, where: PostWhereUniqueInput!): Post!
   removePost(id: String!): Post!
   signup(signUpInput: SignUpInput!): SignResponse!
+  signin(signInInput: SignInInput!): SignResponse!
 }
 
 input UserCreateInput {
@@ -792,6 +793,11 @@ input PostUpdateInput {
 
 input SignUpInput {
   username: String!
+  email: String!
+  password: String!
+}
+
+input SignInInput {
   email: String!
   password: String!
 }

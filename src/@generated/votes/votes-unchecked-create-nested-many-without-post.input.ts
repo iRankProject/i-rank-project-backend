@@ -4,6 +4,7 @@ import { VotesCreateWithoutPostInput } from './votes-create-without-post.input';
 import { Type } from 'class-transformer';
 import { VotesCreateOrConnectWithoutPostInput } from './votes-create-or-connect-without-post.input';
 import { VotesCreateManyPostInputEnvelope } from './votes-create-many-post-input-envelope.input';
+import { Prisma } from '@prisma/client';
 import { VotesWhereUniqueInput } from './votes-where-unique.input';
 
 @InputType()
@@ -23,5 +24,5 @@ export class VotesUncheckedCreateNestedManyWithoutPostInput {
 
     @Field(() => [VotesWhereUniqueInput], {nullable:true})
     @Type(() => VotesWhereUniqueInput)
-    connect?: Array<VotesWhereUniqueInput>;
+    connect?: Array<Prisma.AtLeast<VotesWhereUniqueInput, 'id' | 'userId_postId'>>;
 }

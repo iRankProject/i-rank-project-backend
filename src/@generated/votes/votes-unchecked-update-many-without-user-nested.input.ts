@@ -5,6 +5,7 @@ import { Type } from 'class-transformer';
 import { VotesCreateOrConnectWithoutUserInput } from './votes-create-or-connect-without-user.input';
 import { VotesUpsertWithWhereUniqueWithoutUserInput } from './votes-upsert-with-where-unique-without-user.input';
 import { VotesCreateManyUserInputEnvelope } from './votes-create-many-user-input-envelope.input';
+import { Prisma } from '@prisma/client';
 import { VotesWhereUniqueInput } from './votes-where-unique.input';
 import { VotesUpdateWithWhereUniqueWithoutUserInput } from './votes-update-with-where-unique-without-user.input';
 import { VotesUpdateManyWithWhereWithoutUserInput } from './votes-update-many-with-where-without-user.input';
@@ -31,19 +32,19 @@ export class VotesUncheckedUpdateManyWithoutUserNestedInput {
 
     @Field(() => [VotesWhereUniqueInput], {nullable:true})
     @Type(() => VotesWhereUniqueInput)
-    set?: Array<VotesWhereUniqueInput>;
+    set?: Array<Prisma.AtLeast<VotesWhereUniqueInput, 'id' | 'userId_postId'>>;
 
     @Field(() => [VotesWhereUniqueInput], {nullable:true})
     @Type(() => VotesWhereUniqueInput)
-    disconnect?: Array<VotesWhereUniqueInput>;
+    disconnect?: Array<Prisma.AtLeast<VotesWhereUniqueInput, 'id' | 'userId_postId'>>;
 
     @Field(() => [VotesWhereUniqueInput], {nullable:true})
     @Type(() => VotesWhereUniqueInput)
-    delete?: Array<VotesWhereUniqueInput>;
+    delete?: Array<Prisma.AtLeast<VotesWhereUniqueInput, 'id' | 'userId_postId'>>;
 
     @Field(() => [VotesWhereUniqueInput], {nullable:true})
     @Type(() => VotesWhereUniqueInput)
-    connect?: Array<VotesWhereUniqueInput>;
+    connect?: Array<Prisma.AtLeast<VotesWhereUniqueInput, 'id' | 'userId_postId'>>;
 
     @Field(() => [VotesUpdateWithWhereUniqueWithoutUserInput], {nullable:true})
     @Type(() => VotesUpdateWithWhereUniqueWithoutUserInput)

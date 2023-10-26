@@ -4,6 +4,7 @@ import { UserCreateWithoutVotesInput } from './user-create-without-votes.input';
 import { Type } from 'class-transformer';
 import { UserCreateOrConnectWithoutVotesInput } from './user-create-or-connect-without-votes.input';
 import { UserUpsertWithoutVotesInput } from './user-upsert-without-votes.input';
+import { Prisma } from '@prisma/client';
 import { UserWhereUniqueInput } from './user-where-unique.input';
 import { UserUpdateWithoutVotesInput } from './user-update-without-votes.input';
 
@@ -24,7 +25,7 @@ export class UserUpdateOneRequiredWithoutVotesNestedInput {
 
     @Field(() => UserWhereUniqueInput, {nullable:true})
     @Type(() => UserWhereUniqueInput)
-    connect?: UserWhereUniqueInput;
+    connect?: Prisma.AtLeast<UserWhereUniqueInput, 'id' | 'username' | 'email'>;
 
     @Field(() => UserUpdateWithoutVotesInput, {nullable:true})
     @Type(() => UserUpdateWithoutVotesInput)

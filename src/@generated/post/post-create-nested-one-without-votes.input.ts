@@ -3,6 +3,7 @@ import { InputType } from '@nestjs/graphql';
 import { PostCreateWithoutVotesInput } from './post-create-without-votes.input';
 import { Type } from 'class-transformer';
 import { PostCreateOrConnectWithoutVotesInput } from './post-create-or-connect-without-votes.input';
+import { Prisma } from '@prisma/client';
 import { PostWhereUniqueInput } from './post-where-unique.input';
 
 @InputType()
@@ -18,5 +19,5 @@ export class PostCreateNestedOneWithoutVotesInput {
 
     @Field(() => PostWhereUniqueInput, {nullable:true})
     @Type(() => PostWhereUniqueInput)
-    connect?: PostWhereUniqueInput;
+    connect?: Prisma.AtLeast<PostWhereUniqueInput, 'id'>;
 }

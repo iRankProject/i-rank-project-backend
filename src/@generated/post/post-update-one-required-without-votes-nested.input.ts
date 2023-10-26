@@ -4,6 +4,7 @@ import { PostCreateWithoutVotesInput } from './post-create-without-votes.input';
 import { Type } from 'class-transformer';
 import { PostCreateOrConnectWithoutVotesInput } from './post-create-or-connect-without-votes.input';
 import { PostUpsertWithoutVotesInput } from './post-upsert-without-votes.input';
+import { Prisma } from '@prisma/client';
 import { PostWhereUniqueInput } from './post-where-unique.input';
 import { PostUpdateWithoutVotesInput } from './post-update-without-votes.input';
 
@@ -24,7 +25,7 @@ export class PostUpdateOneRequiredWithoutVotesNestedInput {
 
     @Field(() => PostWhereUniqueInput, {nullable:true})
     @Type(() => PostWhereUniqueInput)
-    connect?: PostWhereUniqueInput;
+    connect?: Prisma.AtLeast<PostWhereUniqueInput, 'id'>;
 
     @Field(() => PostUpdateWithoutVotesInput, {nullable:true})
     @Type(() => PostUpdateWithoutVotesInput)

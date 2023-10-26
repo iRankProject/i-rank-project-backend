@@ -4,6 +4,7 @@ import { CategoryCreateWithoutPostsInput } from './category-create-without-posts
 import { Type } from 'class-transformer';
 import { CategoryCreateOrConnectWithoutPostsInput } from './category-create-or-connect-without-posts.input';
 import { CategoryUpsertWithoutPostsInput } from './category-upsert-without-posts.input';
+import { Prisma } from '@prisma/client';
 import { CategoryWhereUniqueInput } from './category-where-unique.input';
 import { CategoryUpdateWithoutPostsInput } from './category-update-without-posts.input';
 
@@ -24,7 +25,7 @@ export class CategoryUpdateOneRequiredWithoutPostsNestedInput {
 
     @Field(() => CategoryWhereUniqueInput, {nullable:true})
     @Type(() => CategoryWhereUniqueInput)
-    connect?: CategoryWhereUniqueInput;
+    connect?: Prisma.AtLeast<CategoryWhereUniqueInput, 'id' | 'name'>;
 
     @Field(() => CategoryUpdateWithoutPostsInput, {nullable:true})
     @Type(() => CategoryUpdateWithoutPostsInput)

@@ -1,5 +1,6 @@
 import { Field } from '@nestjs/graphql';
 import { InputType } from '@nestjs/graphql';
+import { Prisma } from '@prisma/client';
 import { VotesWhereUniqueInput } from './votes-where-unique.input';
 import { Type } from 'class-transformer';
 import { VotesUpdateWithoutPostInput } from './votes-update-without-post.input';
@@ -9,7 +10,7 @@ export class VotesUpdateWithWhereUniqueWithoutPostInput {
 
     @Field(() => VotesWhereUniqueInput, {nullable:false})
     @Type(() => VotesWhereUniqueInput)
-    where!: VotesWhereUniqueInput;
+    where!: Prisma.AtLeast<VotesWhereUniqueInput, 'id' | 'userId_postId'>;
 
     @Field(() => VotesUpdateWithoutPostInput, {nullable:false})
     @Type(() => VotesUpdateWithoutPostInput)

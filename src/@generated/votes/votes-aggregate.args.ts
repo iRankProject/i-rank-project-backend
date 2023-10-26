@@ -3,6 +3,7 @@ import { ArgsType } from '@nestjs/graphql';
 import { VotesWhereInput } from './votes-where.input';
 import { Type } from 'class-transformer';
 import { VotesOrderByWithRelationInput } from './votes-order-by-with-relation.input';
+import { Prisma } from '@prisma/client';
 import { VotesWhereUniqueInput } from './votes-where-unique.input';
 import { Int } from '@nestjs/graphql';
 import { VotesCountAggregateInput } from './votes-count-aggregate.input';
@@ -20,7 +21,7 @@ export class VotesAggregateArgs {
     orderBy?: Array<VotesOrderByWithRelationInput>;
 
     @Field(() => VotesWhereUniqueInput, {nullable:true})
-    cursor?: VotesWhereUniqueInput;
+    cursor?: Prisma.AtLeast<VotesWhereUniqueInput, 'id' | 'userId_postId'>;
 
     @Field(() => Int, {nullable:true})
     take?: number;
